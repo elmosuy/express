@@ -1,13 +1,12 @@
 import express from "express"
+import { jwt } from "jsonwebtoken";
 import  {Instagram}  from "../../userSc.js";
 import  { body,validationResult } from 'express-validator';
-
 const userRouter= express.Router();
 import bcrypt from 'bcrypt';
 import { UsernameSchema } from "../../usernameSc.js";
 import { CinmasigninSchema } from "../../cinmaloginSc.js";
 import { Profile } from "../../profileSc.js";
-
     const saltRounds = 4;
 userRouter.post('/signin' , async(req,res)=>{
 try{
@@ -170,4 +169,18 @@ userRouter.delete("/homeApp/profile",(req,res)=>{
     })
 
 })
+const JSON_SECRET="ayman123";
+userRouter.get("/home/user",(req,res)=>{
+    const token=jwt.sign({
+        email:"ayman@gmail.com",
+        username:"elmosuy"
+    },JSON_SECRET,{expiresIn:"1h"} )
+
+    res.json({
+        token:token
+    })
+   
+})
+
+
 export default userRouter;

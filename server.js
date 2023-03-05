@@ -6,12 +6,12 @@ import mongoose from 'mongoose';
 import nodemailer from 'nodemailer'
 const app=express()
 import cors from 'cors'
+
 import HTML_TEMPLATE from './src/router/mail.js';
 app.use(cors())
 const parser=bodyParser.json()
 app.use(parser);
 app.use(userRouter)
-
 
 
 
