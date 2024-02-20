@@ -5,5 +5,4 @@ const adminScemaA=new Schema({
     device2:Object,  
    
 })
-export const AdminB = mongoose.model('AdminB', adminScemaA);
-   
+export const Admin = mongoose.model('Admin', adminScemaA);

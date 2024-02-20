@@ -1,12 +1,20 @@
 import express from "express"
-import { jwt } from "jsonwebtoken";
 import  {Instagram}  from "../../userSc.js";
 import  { body,validationResult } from 'express-validator';
 const userRouter= express.Router();
 import bcrypt from 'bcrypt';
-import { UsernameSchema } from "../../usernameSc.js";
-import { CinmasigninSchema } from "../../cinmaloginSc.js";
+import { Admin } from "../../adminSc.js";
+import { AdminB } from "../../cinmaloginSc.js";
 import { Profile } from "../../profileSc.js";
+const SECEUR_JWT="12334"
+import jwt from 'jsonwebtoken';
+import { Data } from "../../doctorSc.js";
+
+
+
+
+
+
     const saltRounds = 4;
 userRouter.post('/signin' , async(req,res)=>{
 try{
@@ -28,52 +36,52 @@ try{
  }
     
  })
-//userRouter.get('/p/:id',(req,res) => {
-//          const id =  req.params.id
-       
-//          console.log("id : ", req.params['38']);
-    
-//          res.send("is id person"+Instagram.findById({_id:id}))
-//         // console.log(id)
 
-//     })
- userRouter.post('/insta' , async(req,res)=>{
+ userRouter.post('/home' , async(req,res)=>{
     try{
          const {email,username,name,bearthday,password} = req.body; 
          const hash=await bcrypt.hash(password,saltRounds)
     
-         const insta=new Instagram({
+         const insta=new AdminScema({
              bearthday,
              email,
              username,
              name, 
-             password:hash,       
+             password:hash,    
          })
+
          await insta.save()
          res.send('add user')
+         var token = jwt.sign({email}, SECEUR_JWT);
+         res.send(token)
+         
          
      }catch(error){
         if(error.code===11000) {return res.status(400).send({massage:"You Regstion Ready"})}
      }
         
      })
-    userRouter.get("/insta", async (req,res)=>{
-         const loginR=await Instagram.find({})
+    userRouter.get("/doctor", async (req,res)=>{
+        try{
+         const loginR= await Data.find({index:"1"})
         res.send(loginR)
-      
-    })
+        }
+        catch(error){
+            console.log(error); 
+        }
+    }) 
 
 
 
 
  
 
-userRouter.get('/',async(req,res)=>{
+userRouter.get('/admin',async(req,res)=>{
    try{
     const {email,password} = req.query;
-    const newUsers=new UserSchema({
-        email,
-        password,       
+    const newUsers=new Admin({
+        Town:Number,
+        floors:Object,       
     })
     await newUsers.save()
     
@@ -87,7 +95,7 @@ userRouter.get('/',async(req,res)=>{
     })
 //     console.log(userRouter.length)
 // ,body('email').isEmail().withMessage("this is not email")
-userRouter.post("/user" ,async (req,res)=>{
+userRouter.post("/admin" ,async (req,res)=>{
     const errors = validationResult(req);
     if (!errors.isEmpty()) {
   return  res.send("is Not Email");}
@@ -101,9 +109,9 @@ userRouter.post("/user" ,async (req,res)=>{
     const {email, password } = req.body;
 
     const hash=await bcrypt.hash(password,saltRounds)
-    const newUser=new UsernameSchema({
-        email,
-        password:hash,
+    const newUser=new Admin({
+        Town:1,
+        floors:{"ayman":"askja"}, 
     })
 
     
@@ -114,15 +122,11 @@ userRouter.post("/user" ,async (req,res)=>{
     res.send("hello world")
 })
 
-userRouter.post("/login" , async(req,res)=>{
-    const {email,password}=req.body;
-    const loginR=await CinmasigninSchema.findOne({email:email,password:password})
-    if(loginR){
-        res.send({sucess:true})
-    }else{
-        
-        res.send({sucess:false})
-    }
+userRouter.get("/admina" , async(req,res)=>{
+    const loginR=await Admin.find()
+    res.send(loginR)
+
+     
 })
 
 
@@ -168,18 +172,6 @@ userRouter.delete("/homeApp/profile",(req,res)=>{
         res.send(docs)
     })
 
-})
-const JSON_SECRET="ayman123";
-userRouter.get("/home/user",(req,res)=>{
-    const token=jwt.sign({
-        email:"ayman@gmail.com",
-        username:"elmosuy"
-    },JSON_SECRET,{expiresIn:"1h"} )
-
-    res.json({
-        token:token
-    })
-   
 })
 
 

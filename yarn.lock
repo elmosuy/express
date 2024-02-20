@@ -1034,6 +1034,13 @@
     "@types/qs" "*"
     "@types/serve-static" "*"
 
+"@types/jsonwebtoken@^9":
+  "integrity" "sha512-c5ltxazpWabia/4UzhIoaDcIza4KViOQhdbjRlfcIGVnsE3c3brkz9Z+F/EeJIECOQP7W7US2hNE930cWWkPiw=="
+  "resolved" "https://registry.npmjs.org/@types/jsonwebtoken/-/jsonwebtoken-9.0.1.tgz"
+  "version" "9.0.1"
+  dependencies:
+    "@types/node" "*"
+
 "@types/long@^4.0.0":
   "integrity" "sha512-MqTGEo5bj5t157U6fA/BiDynNkn0YknVdh48CMPkTSpFTVmvao5UQmm7uEF6xBEo7qIMAlY/JSleYaE6VOdpaA=="
   "resolved" "https://registry.npmjs.org/@types/long/-/long-4.0.2.tgz"
@@ -1527,6 +1534,20 @@
   "resolved" "https://registry.npmjs.org/etag/-/etag-1.8.1.tgz"
   "version" "1.8.1"
 
+"express-jwt@^8.4.1":
+  "integrity" "sha512-IZoZiDv2yZJAb3QrbaSATVtTCYT11OcqgFGoTN4iKVyN6NBkBkhtVIixww5fmakF0Upt5HfOxJuS6ZmJVeOtTQ=="
+  "resolved" "https://registry.npmjs.org/express-jwt/-/express-jwt-8.4.1.tgz"
+  "version" "8.4.1"
+  dependencies:
+    "@types/jsonwebtoken" "^9"
+    "express-unless" "^2.1.3"
+    "jsonwebtoken" "^9.0.0"
+
+"express-unless@^2.1.3":
+  "integrity" "sha512-wj4tLMyCVYuIIKHGt0FhCtIViBcwzWejX0EjNxveAa6dG+0XBCQhMbx+PnkLkFCxLC69qoFrxds4pIyL88inaQ=="
+  "resolved" "https://registry.npmjs.org/express-unless/-/express-unless-2.1.3.tgz"
+  "version" "2.1.3"
+
 "express-validator@^6.14.2":
   "integrity" "sha512-8XfAUrQ6Y7dIIuy9KcUPCfG/uCbvREctrxf5EeeME+ulanJ4iiW71lWmm9r4YcKKYOCBMan0WpVg7FtHu4Z4Wg=="
   "resolved" "https://registry.npmjs.org/express-validator/-/express-validator-6.14.2.tgz"
@@ -1795,6 +1816,11 @@
   "integrity" "sha512-41Cifkg6e8TylSpdtTpeLVMqvSBEVzTttHvERD741+pnZ8ANv0004MRL43QKPDlK9cGvNp6NZWZUBlbGXYxxng=="
   "resolved" "https://registry.npmjs.org/is-number/-/is-number-7.0.0.tgz"
   "version" "7.0.0"
+
+"jose@^4.13.1":
+  "integrity" "sha512-MSJQC5vXco5Br38mzaQKiq9mwt7lwj2eXpgpRyQYNHYt2lq1PjkWa7DLXX0WVcQLE9HhMh3jPiufS7fhJf+CLQ=="
+  "resolved" "https://registry.npmjs.org/jose/-/jose-4.13.1.tgz"
+  "version" "4.13.1"
 
 "jsonwebtoken@^9.0.0":
   "integrity" "sha512-tuGfYXxkQGDPnLJ7SibiQgVgeDgfbPq2k2ICcbgqW8WxWLBAxKQM/ZCu/IT8SOSwmaYl4dpTFCW5xZv7YbbWUw=="
